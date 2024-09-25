@@ -48,7 +48,7 @@ Now you can use the app
 ## Preview
 
 
-
+web-summarize.mp4
 
 Created by Oleksandr Samoilenko
 
