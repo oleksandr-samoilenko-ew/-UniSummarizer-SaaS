@@ -49,6 +49,7 @@ Now you can use the app
 
 ![Preview](https://gitlab.extrawest.com/i-training/flutter/unisummarizer-saas/-/raw/master/demo_files/web-summarize.mp4)
 ![Preview](https://gitlab.extrawest.com/i-training/flutter/unisummarizer-saas/-/raw/master/demo_files/youtube-summarize.mp4)
+
 Created by Oleksandr Samoilenko
 
 [Extrawest.com](https://www.extrawest.com), 2024
