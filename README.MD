@@ -53,3 +53,6 @@ Now you can use the app
 Created by Oleksandr Samoilenko
 
 [Extrawest.com](https://www.extrawest.com), 2024
+
+
+git remote add main https://github.com/oleksandr-samoilenko-ew/UniSummarizer-SaaS.git

@@ -37,7 +37,6 @@ class ApiService {
     required String apiKey,
   }) async {
     String summary = '';
-    print('apiKey: $apiKey');
     final response = await http.post(
       Uri.parse('$baseUrl/summarize-website'),
       headers: <String, String>{
