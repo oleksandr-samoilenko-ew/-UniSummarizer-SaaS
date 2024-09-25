@@ -11,14 +11,18 @@ class SummarizeBloc extends Bloc<SummarizeEvent, SummarizeState> {
   final ApiService _apiService = GetIt.I<ApiService>();
 
   SummarizeBloc() : super(SummarizeInitial()) {
-    on<SendYoutubeUrl>(_onYoutubeUrlSend);
+    on<SendUrl>(_onUrlSend);
   }
 
-  _onYoutubeUrlSend(SendYoutubeUrl event, Emitter<SummarizeState> emit) async {
+  _onUrlSend(SendUrl event, Emitter<SummarizeState> emit) async {
     try {
+      String summarize = '';
       emit(SummarizeLoading());
-      final summarize = await _apiService.fetchSubtitles(event.text);
-      print('SummarizeBloc: $summarize');
+      if (event.text.contains('youtube.com')) {
+        summarize = await _apiService.summarizeYoutube(url: event.text, apiKey: event.apiKey);
+      } else {
+        summarize = await _apiService.summarizeWebsite(url: event.text, apiKey: event.apiKey);
+      }
       emit(SummarizeLoaded(summarize));
     } catch (e) {
       emit(SummarizeError(e.toString()));

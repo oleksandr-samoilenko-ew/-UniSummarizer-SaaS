@@ -12,6 +12,7 @@ class SummarizerScreen extends StatefulWidget {
 
 class _SummarizerScreenState extends State<SummarizerScreen> {
   final TextEditingController _urlController = TextEditingController();
+  final TextEditingController _apiKeyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,31 +21,45 @@ class _SummarizerScreenState extends State<SummarizerScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('YouTube Summarizer'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: _urlController,
-            decoration: const InputDecoration(labelText: 'YouTube URL'),
-            onSubmitted: (value) {},
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: _urlController,
+                decoration: const InputDecoration(labelText: 'URL'),
+                onSubmitted: (value) {},
+              ),
+              TextField(
+                controller: _apiKeyController,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'YouTube Groq API Key'),
+                onSubmitted: (value) {},
+              ),
+              TextButton(
+                onPressed: () {
+                  context.read<SummarizeBloc>().add(SendUrl(
+                        text: _urlController.text,
+                        apiKey: _apiKeyController.text,
+                      ));
+                },
+                child: const Text('Summarize'),
+              ),
+              BlocBuilder<SummarizeBloc, SummarizeState>(builder: (context, state) {
+                if (state is SummarizeLoading) {
+                  return const CircularProgressIndicator();
+                } else if (state is SummarizeLoaded) {
+                  return Text(state.summarize);
+                } else if (state is SummarizeError) {
+                  return const Text('Failed to fetch subtitles');
+                } else {
+                  return const Text('Enter a YouTube or Website URL and Groq API Key');
+                }
+              }),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              context.read<SummarizeBloc>().add(SendYoutubeUrl(_urlController.text));
-            },
-            child: const Text('Summarize'),
-          ),
-          BlocBuilder<SummarizeBloc, SummarizeState>(builder: (context, state) {
-            if (state is SummarizeLoading) {
-              return const CircularProgressIndicator();
-            } else if (state is SummarizeLoaded) {
-              return Text(state.summarize);
-            } else if (state is SummarizeError) {
-              return const Text('Failed to fetch subtitles');
-            } else {
-              return const Text('Enter a YouTube URL');
-            }
-          }),
-        ],
+        ),
       ),
     );
   }

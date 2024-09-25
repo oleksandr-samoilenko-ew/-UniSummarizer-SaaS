@@ -5,11 +5,12 @@ sealed class SummarizeEvent extends Equatable {
   const SummarizeEvent();
 }
 
-class SendYoutubeUrl extends SummarizeEvent {
+class SendUrl extends SummarizeEvent {
   final String text;
+  final String apiKey;
 
-  const SendYoutubeUrl(this.text);
+  const SendUrl({required this.text, required this.apiKey});
 
   @override
-  List<Object> get props => [text];
+  List<Object> get props => [text, apiKey];
 }
