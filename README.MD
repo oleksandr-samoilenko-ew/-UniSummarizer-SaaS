@@ -47,12 +47,9 @@ Now you can use the app
 
 ## Preview
 
-![Preview](https://gitlab.extrawest.com/i-training/flutter/unisummarizer-saas/-/blob/main/demo_files/web-summarize.mp4)
-![Preview](https://gitlab.extrawest.com/i-training/flutter/unisummarizer-saas/-/blob/main/demo_files/youtube-summarize.mp4)
+![Preview](https://github.com/oleksandr-samoilenko-ew/UniSummarizer-SaaS/blob/main/demo_files/youtube-summarize-demo.mp4)
+![Preview](https://github.com/oleksandr-samoilenko-ew/UniSummarizer-SaaS/blob/main/demo_files/web-summarize-demo.mp4)
 
 Created by Oleksandr Samoilenko
 
 [Extrawest.com](https://www.extrawest.com), 2024
-
-
-git remote add main https://github.com/oleksandr-samoilenko-ew/UniSummarizer-SaaS.git
